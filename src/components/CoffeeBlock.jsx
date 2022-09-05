@@ -1,27 +1,44 @@
 import React from 'react';
 
-export default function CoffeeBlock(props) {
+export default function CoffeeBlock({ title, price, imageUrl, sizes, types }) {
+  const [activeType, setActiveType] = React.useState(0);
+  const [activeSize, setActiveSize] = React.useState(0);
+
+  const typeNames = ['фильтр', 'эспрессо'];
+
   return (
     <div className="coffee-block">
       <img
         className="coffee-block__image"
-        src="https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-mono/ethiopia-yirgacheffe-025.png"
+        src={imageUrl}
         alt="Coffee"
       />
-      <h4 className="coffee-block__title">{props.title}</h4>
+      <h4 className="coffee-block__title">{title}</h4>
       <div className="coffee-block__selector">
         <ul>
-          <li className="active">фильтр</li>
-          <li>эспрессо</li>
+          {
+            types.map((typeId) => (
+              <li
+                className={activeType === typeId ? 'active' : ''}
+                onClick={() => setActiveType(typeId)}
+              >{typeNames[typeId]}</li>
+            ))
+          }
         </ul>
         <ul>
-          <li className="active">250 г</li>
-          <li>1000 г</li>
+          {
+            sizes.map((size, i) => (
+              <li
+                className={activeSize === i ? 'active' : ''}
+                onClick={() => setActiveSize(i)}
+              >{size} г</li>
+            ))
+          }
         </ul>
       </div>
       <div className="coffee-block__bottom">
-        <div className="coffee-block__price">от {props.price} ₽</div>
-        <div className="button button--outline button--add">
+        <div className="coffee-block__price">от {price} ₽</div>
+        <button className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -35,8 +52,8 @@ export default function CoffeeBlock(props) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          <i>0</i>
+        </button>
       </div>
     </div>
   );

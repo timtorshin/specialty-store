@@ -1,11 +1,12 @@
 import React from 'react';
+import coffeeLogo from '../assets/img/coffee-logo.svg';
 
 export default function Header() {
   return (
     <div className="header">
       <div className="container">
         <div className="header__logo">
-          <img width="38" src="https://www.svgrepo.com/show/208808/coffee.svg" alt="Specialty Store Logo" />
+          <img width="38" src={coffeeLogo} alt="Specialty Store Logo" />
           <div>
             <h1>Specialty Store</h1>
             <p>Russian Coffee Culture</p>

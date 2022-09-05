@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Categories from './components/Categories';
 import Sort from './components/Sort';
 import CoffeeBlock from './components/CoffeeBlock';
+import coffeeItems from './assets/coffee.json';
 
 function App() {
   return (
@@ -17,8 +18,11 @@ function App() {
           </div>
           <h2 className="content__title">Кофе в зёрнах</h2>
           <div className="content__items">
-            <CoffeeBlock title="Эфиопия Сидамо" price="529" />
-            <CoffeeBlock title="Руанда Мутетели" price="549" />
+            {
+              coffeeItems.map((obj) => (
+                <CoffeeBlock {...obj} />
+              ))
+            }
           </div>
         </div>
       </div>

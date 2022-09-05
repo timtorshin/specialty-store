@@ -1,0 +1,102 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-mono/ethiopia-sidamo-025.png",
+    "title": "Эфиопия Сидамо",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 529,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-mono/colombia-huila-025.png",
+    "title": "Колумбия Уила",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 469,
+    "category": 0,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-mono/sumatra-pilihan-025.png",
+    "title": "Суматра Пилихан",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 669,
+    "category": 1,
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-microlot/costa-rica-san-isidro-0255.png",
+    "title": "Коста-Рика Сан Исидро",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 759,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-microlot/kenya-kii-025.png",
+    "title": "Кения Кии",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 699,
+    "category": 3,
+    "rating": 8
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-microlot/filter-myanmar-mya-ze-di-025.png",
+    "title": "Мьянма Мья Зе Ди",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 619,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-mono/thailand-mae-ha-yan-025.png",
+    "title": "Тайланд Мае Ха Ян",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 699,
+    "category": 1,
+    "rating": 9
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-microlot/uganda-bulambuli-025.png",
+    "title": "Уганда Буламбули",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 699,
+    "category": 4,
+    "rating": 10
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-mono/burundi-kigoganya-025.png",
+    "title": "Бурунди Кигоганья",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 579,
+    "category": 5,
+    "rating": 10
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://coffee-static.storage.yandexcloud.net/files/shares/data/_newpack6/alt-mono/rwanda-muteteli-025.png",
+    "title": "Руанда Мутетели",
+    "types": [0, 1],
+    "sizes": [250, 1000],
+    "price": 549,
+    "category": 5,
+    "rating": 7
+  }
+]
