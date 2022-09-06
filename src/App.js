@@ -20,7 +20,7 @@ function App() {
           <div className="content__items">
             {
               coffeeItems.map((obj) => (
-                <CoffeeBlock {...obj} />
+                <CoffeeBlock {...obj} key={obj.id} />
               ))
             }
           </div>

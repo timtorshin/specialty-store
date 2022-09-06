@@ -21,6 +21,7 @@ export default function CoffeeBlock({ title, price, imageUrl, sizes, types }) {
               <li
                 className={activeType === typeId ? 'active' : ''}
                 onClick={() => setActiveType(typeId)}
+                key={typeId}
               >{typeNames[typeId]}</li>
             ))
           }
@@ -31,6 +32,7 @@ export default function CoffeeBlock({ title, price, imageUrl, sizes, types }) {
               <li
                 className={activeSize === i ? 'active' : ''}
                 onClick={() => setActiveSize(i)}
+                key={size}
               >{size} г</li>
             ))
           }
