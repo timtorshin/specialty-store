@@ -1,13 +1,19 @@
 import React from 'react';
 
-export default function Sort() {
+export default function Sort({ value, onChangeSort }) {
   const [isVisible, setIsVisible] = React.useState(false);
-  const [selectedItem, setSelectedItem] = React.useState(0);
 
-  const menuList = ['популярности', 'цене', 'алфавиту'];
+  const menuList = [
+    { name: 'популярности ↓', sortProperty: 'rating' },
+    { name: 'популярности ↑', sortProperty: '-rating' },
+    { name: 'цене ↓', sortProperty: 'price' },
+    { name: 'цене ↑', sortProperty: '-price' },
+    { name: 'алфавиту ↓', sortProperty: '-title' },
+    { name: 'алфавиту ↑', sortProperty: 'title' }
+  ];
 
   const onClickMenuItem = (i) => {
-    setSelectedItem(i);
+    onChangeSort(i);
     setIsVisible(false);
   };
 
@@ -27,19 +33,19 @@ export default function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setIsVisible(!isVisible)}>{menuList[selectedItem]}</span>
+        <span onClick={() => setIsVisible(!isVisible)}>{value.name}</span>
       </div>
       {
         isVisible && (
           <div className="sort__popup">
             <ul>
               {
-                menuList.map((menuItem, i) => (
+                menuList.map((obj, i) => (
                   <li
-                    className={selectedItem === i ? 'active' : ''}
-                    onClick={() => onClickMenuItem(i)}
+                    className={value.sortProperty === obj.sortProperty ? 'active' : ''}
+                    onClick={() => onClickMenuItem(obj)}
                     key={i}
-                  >{menuItem}</li>
+                  >{obj.name}</li>
                 ))
               }
             </ul>
