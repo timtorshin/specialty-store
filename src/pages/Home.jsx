@@ -4,8 +4,11 @@ import Sort from '../components/Sort';
 import CoffeeBlock from '../components/CoffeeBlock';
 import CoffeeLoader from '../components/CoffeeBlock/CoffeeLoader';
 import PaginationBlock from '../components/PaginationBlock';
+import { SearchContext } from '../App';
 
-export default function Home({ searchValue }) {
+export default function Home() {
+  const { searchValue } = React.useContext(SearchContext);
+
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);

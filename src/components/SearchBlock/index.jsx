@@ -1,7 +1,10 @@
 import React from 'react';
+import { SearchContext } from '../../App';
 import styles from './SearchBlock.module.scss';
 
-export default function SearchBlock({ searchValue, setSearchvalue }) {
+export default function SearchBlock() {
+  const { searchValue, setSearchValue } = React.useContext(SearchContext);
+
   return (
     <div className={styles.root}>
       <svg
@@ -40,7 +43,7 @@ export default function SearchBlock({ searchValue, setSearchvalue }) {
       </svg>
       <input
         value={searchValue}
-        onChange={(evt) => setSearchvalue(evt.target.value)}
+        onChange={(evt) => setSearchValue(evt.target.value)}
         className={styles.input}
         placeholder="Поиск кофе..."
       />
@@ -48,7 +51,7 @@ export default function SearchBlock({ searchValue, setSearchvalue }) {
         searchValue && (
           <svg
             className={styles.clearIcon}
-            onClick={() => setSearchvalue('')}
+            onClick={() => setSearchValue('')}
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />

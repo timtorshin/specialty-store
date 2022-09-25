@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import coffeeLogo from '../assets/img/coffee-logo.svg';
 import SearchBlock from './SearchBlock';
 
-export default function Header({ searchValue, setSearchvalue }) {
+export default function Header() {
   return (
     <div className="header">
       <div className="container">
@@ -16,7 +16,7 @@ export default function Header({ searchValue, setSearchvalue }) {
             </div>
           </div>
         </Link>
-        <SearchBlock searchValue={searchValue} setSearchvalue={setSearchvalue} />
+        <SearchBlock />
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
             <span>1128 ₽</span>
