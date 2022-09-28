@@ -1,21 +1,25 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import CoffeeBlock from '../components/CoffeeBlock';
 import CoffeeLoader from '../components/CoffeeBlock/CoffeeLoader';
 import PaginationBlock from '../components/PaginationBlock';
 import { SearchContext } from '../App';
+import { setCategoryId } from '../redux/slices/filterSlice';
 
 export default function Home() {
+  const { categoryId, sortType } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
+
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
+
   const { searchValue } = React.useContext(SearchContext);
 
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [categoryId, setCategoryId] = React.useState(0);
-  const [sortType, setSortType] = React.useState({
-    name: 'популярности',
-    sortProperty: 'rating'
-  });
   const [currentPage, setCurrentPage] = React.useState(1);
 
   const skeletons = [...new Array(6)].map((_, index) => <CoffeeLoader key={index} />);
@@ -41,8 +45,8 @@ export default function Home() {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories value={categoryId} onChangeCategory={(id) => setCategoryId(id)} />
-        <Sort value={sortType} onChangeSort={(id) => setSortType(id)} />
+        <Categories value={categoryId} onChangeCategory={onChangeCategory} />
+        <Sort />
       </div>
       <h2 className="content__title">Кофе в зёрнах</h2>
       <div className="content__items">
