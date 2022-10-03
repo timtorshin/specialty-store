@@ -1,17 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import qs from 'qs';
 import Categories from '../components/Categories';
-import Sort from '../components/Sort';
+import Sort, { sortList } from '../components/Sort';
 import CoffeeBlock from '../components/CoffeeBlock';
 import CoffeeLoader from '../components/CoffeeBlock/CoffeeLoader';
 import PaginationBlock from '../components/PaginationBlock';
 import { SearchContext } from '../App';
-import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 
 export default function Home() {
+  const navigate = useNavigate();
   const { categoryId, sortType, currentPage } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+  const isMounted = React.useRef(false);
+
+  const { searchValue } = React.useContext(SearchContext);
+  const [items, setItems] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -21,15 +29,7 @@ export default function Home() {
     dispatch(setCurrentPage(number));
   };
 
-  const { searchValue } = React.useContext(SearchContext);
-
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  const skeletons = [...new Array(6)].map((_, index) => <CoffeeLoader key={index} />);
-  const coffee = items.map((obj) => <CoffeeBlock {...obj} key={obj.id} />);
-
-  React.useEffect(() => {
+  const fetchCoffee = () => {
     setIsLoading(true);
 
     const category = categoryId > 0 ? `category=${categoryId}` : '';
@@ -45,7 +45,50 @@ export default function Home() {
       });
 
     window.scrollTo(0, 0);
-  }, [categoryId, sortType, searchValue, currentPage]);
+  };
+
+  const skeletons = [...new Array(6)].map((_, index) => <CoffeeLoader key={index} />);
+  const coffee = items.map((obj) => <CoffeeBlock {...obj} key={obj.id} />);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const params = {
+        categoryId: categoryId > 0 ? categoryId : null,
+        sortProperty: sortType.sortProperty,
+        currentPage
+      };
+      const queryString = qs.stringify(params, { skipNulls: true });
+
+      navigate(`/?${queryString}`);
+    }
+  }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      fetchCoffee();
+    }
+  }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
+
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
+
+      if (sortType) {
+        params.sortType = sort;
+      }
+
+      dispatch(setFilters(params));
+    }
+
+    isMounted.current = true;
+  }, []);
+
+  React.useEffect(() => {
+    if (!window.location.search) {
+      fetchCoffee();
+    }
+  }, []);
 
   return (
     <div className="container">
