@@ -15,6 +15,7 @@ export default function Sort() {
   const sortType = useSelector((state) => state.filter.sortType);
   const dispatch = useDispatch();
 
+  const sortRef = React.useRef();
   const [isVisible, setIsVisible] = React.useState(false);
 
   const onClickMenuItem = (obj) => {
@@ -22,8 +23,20 @@ export default function Sort() {
     setIsVisible(false);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (evt) => {
+      if (!evt.composedPath().includes(sortRef.current)) {
+        setIsVisible(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => document.body.removeEventListener('click', handleClickOutside);
+  }, []);
+
   return (
-    <div className="sort">
+    <div className="sort" ref={sortRef}>
       <div className="sort__label">
         <svg
           width="10"
